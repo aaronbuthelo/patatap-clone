@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Star</title>
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="paper-full.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
+
+
+
+<link rel="stylesheet" type="text/css" href="patatap.css">
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+
+    var keyData = {
+        a:{
+            sound: new Howl({
+                src: ['bubbles.mp3']
+            }),
+            color:"red"
+            
+            
+        },
+        s:{
+            color: "pink",
+            sound: new Howl({
+                src: ['sounds/assets/A/clay.mp3']
+            })
+        },
+        d:{
+            color: "blue",
+            sound: new Howl({
+                src: ['sounds/assets/A/flash-1.mp3']
+            })
+        },
+        f:{
+            color: "purple",
+            sound: new Howl({
+                src: ['sounds/assets/A/squiggle.mp3']
+            })
+        },
+        g:{
+            color: "orange",
+            sound: new Howl({
+             src: ['sounds/assets/A/strike.mp3']
+            })
+        },
+        h:{
+            color: "green",
+            sound: new Howl({
+               src : ['sounds/assets/A/moon.mp3']
+            })
+        },
+        j:{
+            color: "#334423",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-3.mp3']
+            })
+        },
+        k:{
+            color: "white",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-1.mp3']
+            })
+        },
+        l: {
+            color: "indigo",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        q: {
+            color: "indigo",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        w: {
+            color: "indigo",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        e: {
+            color: "indigo",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        r: {
+            color: "indigo",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        t: {
+            color: "2342ff",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        y: {
+            color: "23ffff",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        u: {
+            color: "#ff2311",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        i: {
+            color: "#998763",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        o: {
+            color: "#124323",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+
+        p: {
+            color: "#546677",
+            sound: new Howl({
+                src: ['sounds/assets/A/prism-2.mp3']
+            })
+        },
+    
+    }
+
+  
+    var sound2 = new Howl({
+        src: ['bubbles.mp3']
+       
+    });
+      
+      
+    
+    var circles = [];
+    function onKeyDown(event) {
+        if(keyData[event.key]){
+        
+        var maxPoint = new Point(view.size.width, view.size.height);
+        var randomPoint = Point.random();
+        var point = maxPoint * randomPoint;
+        var newCircle = new Path.Star(point,6,55,150);
+        newCircle.fillColor = keyData[event.key].color;
+        circles.push(newCircle);
+        keyData[event.key].sound.play();
+        
+    
+        
+        
+        }
+
+     
+
+
+        else{
+            var maxPoint = new Point(view.size.width, view.size.height);
+        var randomPoint = Point.random();
+        var point = maxPoint * randomPoint;
+        var newCircle = new Path.Star(point,6,55,200);
+        
+        
+      
+            newCircle.fillColor = "white";
+          
+            sound2.play();
+            
+
+        circles.push(newCircle);
+        
+        
+
+        }
+}
+
+    function onFrame(event){
+        for(var i=0; i<circles.length;i++){
+            var velocity = new Point(12,0);
+            var acceleration = new Point(0,0.2);
+            circles[i].fillColor.hue+=1;
+            circles[i].scale(.92);
+            circles[i].position += velocity;
+            velocity += acceleration;
+        }
+    }
+
+
+
+       
+  
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.js"></script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
